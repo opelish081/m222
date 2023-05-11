@@ -1,0 +1,38 @@
+class Account {
+    constructor(accountNumber, ownerName) {
+      this.accountNumber = accountNumber || 0;
+      this.ownerName = ownerName;
+      this.balance = 0.0;
+      this.transactions = [];
+    }
+  
+    deposit(money) {
+      if (money > 0) {
+        this.balance += money;
+        this.transactions.push(`deposit : ${money}`);
+      }
+    }
+  
+    withdraw(money) {
+      if (money > 0 && money <= this.balance) {
+        this.balance -= money;
+        this.transactions.push(`withdraw : ${money}`);
+      }
+    }
+  
+    getBalance() {
+      return this.balance;
+    }
+  
+    getTransactions() {
+      return this.transactions;
+    }
+  }
+
+let acc = new Account(123, "John Doe");
+acc.deposit(100);
+acc.withdraw(50);
+acc.deposit(100000);
+acc.withdraw(50050);
+console.log(acc.getBalance());
+console.log(acc.getTransactions());
